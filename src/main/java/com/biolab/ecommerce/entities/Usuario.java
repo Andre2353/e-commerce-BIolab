@@ -27,9 +27,16 @@ public class Usuario {
     private String email;
     private String telefone;
     @Column(nullable = false)
-    @Size(min = 6)
+    @Size(min = 6,max = 20)
     private String senha;
     @Column(nullable = false)
-    private String[] roles;
+    private Role role;
 
+    public Usuario(String nome, String email, String telefone, String senha) {
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.role = Role.USER;
+    }
 }
