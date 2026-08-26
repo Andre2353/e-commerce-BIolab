@@ -24,6 +24,7 @@ public class PedidoService {
         p.setCliente(u);
         p.setMomento(dto.getMomento());
         p.setStatus(dto.getStatus());
+        pedidoRepository.save(p);
         return "Pedido criado com sucesso";
     }
 }
