@@ -2,10 +2,13 @@ package com.biolab.ecommerce.service;
 
 import com.biolab.ecommerce.DTOs.PedidoRequest;
 import com.biolab.ecommerce.entities.Pedido;
+import com.biolab.ecommerce.entities.StatusPedido;
 import com.biolab.ecommerce.entities.Usuario;
 import com.biolab.ecommerce.repository.PedidoRepository;
 import com.biolab.ecommerce.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
+
+import java.time.Instant;
 
 @Service
 public class PedidoService {
@@ -22,8 +25,8 @@ public class PedidoService {
         Usuario u =usuarioRepository.findById(dto.getIdcliente()).orElseThrow();
         Pedido p = new Pedido();
         p.setCliente(u);
-        p.setMomento(dto.getMomento());
-        p.setStatus(dto.getStatus());
+        p.setMomento(Instant.now());
+        p.setStatus(StatusPedido.AGUARDANDO_PAGAMENTO);
         pedidoRepository.save(p);
         return "Pedido criado com sucesso";
     }
