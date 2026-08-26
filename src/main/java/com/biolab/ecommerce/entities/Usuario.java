@@ -29,7 +29,7 @@ public class Usuario {
     @Column(nullable = false)
     @Size(min = 6,max = 20)
     private String senha;
-    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     public Usuario(String nome, String email, String telefone, String senha) {

@@ -12,8 +12,10 @@ public class UsuarioService {
     public UsuarioService(UsuarioRepository repo) {
         this.repo = repo;
     }
-    public UsuarioRequest criar(UsuarioRequest u){
-        Usuario usuario = new Usuario(u.getNome(),u.getEmail(), u.getTelefone(), u.getSenha() );
-        return :
+    public String criar(UsuarioRequest u){
+        Usuario usuario = new Usuario(u.getNome(),u.getEmail(), u.getTelefone(), u.getSenha());{
+            repo.save(usuario);
+        return "Usuario service";
     }
+}
 }
