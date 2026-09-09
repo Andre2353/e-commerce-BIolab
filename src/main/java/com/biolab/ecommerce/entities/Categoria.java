@@ -1,16 +1,15 @@
 package com.biolab.ecommerce.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "categoria")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Categoria {
@@ -18,7 +17,7 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @ManyToMany(mappedBy = "categoria")
+    @ManyToMany(mappedBy = "categorias")
     // a diferença do list para o set é que o set não permite duplicada
-    private Set<Produto> produto = new HashSet<>();
+    private Set<Produto> produtos = new HashSet<>();
 }

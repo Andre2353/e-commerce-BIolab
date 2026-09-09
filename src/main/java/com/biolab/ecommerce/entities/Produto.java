@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Data
-@Table(name = "produlto")
+@Table(name = "produto")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Produto {
@@ -24,8 +24,8 @@ public class Produto {
     private Blob imgurl;
 
     @ManyToMany
-    @JoinTable(name = "produlto_categoria",
-            joinColumns = @JoinColumn(name = "produltos_id"),
+    @JoinTable(name = "produto_categoria",
+            joinColumns = @JoinColumn(name = "produtos_id"),
             inverseJoinColumns = @JoinColumn(name = "categoria_id"))
-    private Set<Categoria> categoria = new HashSet<>();
+    private Set<Categoria> categorias = new HashSet<>();
 }
