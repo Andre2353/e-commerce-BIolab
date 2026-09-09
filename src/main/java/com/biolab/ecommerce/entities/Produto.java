@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Blob;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -18,6 +20,12 @@ public class Produto {
     private Long id;
     private String nome;
     private String descricao;
-    private  double preco;
+    private double preco;
     private Blob imgurl;
+
+    @ManyToMany
+    @JoinTable(name = "produlto_categoria",
+            joinColumns = @JoinColumn(name = "produltos_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+    private Set<Categoria> categoria = new HashSet<>();
 }
