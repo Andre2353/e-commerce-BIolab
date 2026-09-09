@@ -1,0 +1,11 @@
+package com.biolab.ecommerce.DTOs;
+
+import java.sql.Blob;
+
+public class ProdutoResponse {
+    private Long id;
+    private String nome;
+    private String descricao;
+    private  double preco;
+    private Blob imgurl;
+}
