@@ -6,9 +6,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 public class CategoriaRequest {
     @NotBlank
     private String nome;
+
+    public CategoriaRequest(String nome) {
+        this.nome = nome;
+    }
 }

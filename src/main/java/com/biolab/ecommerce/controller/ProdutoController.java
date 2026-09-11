@@ -1,7 +1,6 @@
 package com.biolab.ecommerce.controller;
 
 import com.biolab.ecommerce.DTOs.ProdutoRequest;
-import com.biolab.ecommerce.service.PagamentoService;
 import com.biolab.ecommerce.service.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -11,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("Produto")
+@RequestMapping("produto")
 @RestController
-public class ProdultoController {
+public class ProdutoController {
     private final ProdutoService produtoService;
 
-    public ProdultoController(ProdutoService produtoService) {
+    public ProdutoController(ProdutoService produtoService) {
         this.produtoService = produtoService;
     }
 

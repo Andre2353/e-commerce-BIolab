@@ -15,10 +15,10 @@ public class ProdutoRequest {
     private String descricao;
     @NotNull
     private  double preco;
-    private Blob imgurl;
+    private String imgurl;
     private Long idCategoria;
 
-    public ProdutoRequest(String nome, String descricao, double preco, Blob imgurl, Long idCategoria) {
+    public ProdutoRequest(String nome, String descricao, double preco, String imgurl, Long idCategoria) {
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;

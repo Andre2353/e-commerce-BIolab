@@ -8,4 +8,7 @@ public class ProdutoResponse {
     private String descricao;
     private  double preco;
     private Blob imgurl;
+
+    public ProdutoResponse(Long id, String nome, String descricao, double preco, String imgurl) {
+    }
 }
