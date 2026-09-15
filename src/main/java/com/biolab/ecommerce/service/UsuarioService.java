@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -39,4 +40,14 @@ public class UsuarioService {
                         usuario.getRole()))
                 .toList();
     }
+    public String deletar(long id) {
+        Optional<Usuario> usuario = usuarioRepository.findById(id);
+        if (usuario.isEmpty()) { // Corrigido de (usuario == null) para (usuario.isEmpty())
+            return "Usuário não existe";
+        } else {
+            usuarioRepository.deleteById(id);
+            return "Usuário kickado";
+        }
+    }
+
 }
