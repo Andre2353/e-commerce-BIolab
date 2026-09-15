@@ -1,21 +1,42 @@
 package com.biolab.ecommerce.service;
 
 import com.biolab.ecommerce.DTOs.UsuarioRequest;
+import com.biolab.ecommerce.DTOs.UsuarioResponse;
 import com.biolab.ecommerce.entities.Usuario;
 import com.biolab.ecommerce.repository.UsuarioRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class UsuarioService {
-    private final UsuarioRepository repo;
+    private final UsuarioRepository usuarioRepository;
 
-    public UsuarioService(UsuarioRepository repo) {
-        this.repo = repo;
+    public UsuarioService(UsuarioRepository usuarioRepository) {
+        this.usuarioRepository = usuarioRepository;
     }
-    public String criar(UsuarioRequest u){
-        Usuario usuario = new Usuario(u.getNome(),u.getEmail(), u.getTelefone(), u.getSenha());{
-            repo.save(usuario);
-        return "Usuario service";
+
+
+    public UsuarioRequest criarUsuario(UsuarioRequest request) {
+        Usuario usuario = new Usuario();
+        usuario.setNome(request.getNome());
+        usuario.setEmail(request.getEmail());
+        usuario.setSenha(request.getSenha());
+        usuario.setRole(request.getRole());
+        usuarioRepository.save(usuario);
+        return request;
     }
-}
+    public List<UsuarioResponse> mostrarUsuarios() {
+        return usuarioRepository.findAll().stream()
+                .map(usuario -> new UsuarioResponse(
+                        usuario.getId(),
+                        usuario.getNome(),
+                        usuario.getEmail(),
+                        usuario.getTelefone(),
+                        usuario.getSenha(),
+                        usuario.getRole()))
+                .toList();
+    }
 }

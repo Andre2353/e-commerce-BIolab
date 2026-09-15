@@ -24,4 +24,5 @@ public class UsuarioController {
         return ResponseEntity.ok(service.criar(dto));
 
     }
+
 }
