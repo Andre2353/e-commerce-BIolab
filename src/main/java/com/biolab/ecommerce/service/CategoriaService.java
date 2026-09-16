@@ -33,6 +33,12 @@ public class CategoriaService {
                 categoria.getId(),
                 categoria.getNome()
         );
+    } public String deletar(Long id) {
+        if (!categoriaRepository.existsById(id)) {
+            return "Produlto não existe";
+        }
+        categoriaRepository.deleteById(id);
+        return "Produlto deletado com sucesso";
     }
 }
 
