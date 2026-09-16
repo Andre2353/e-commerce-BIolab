@@ -1,8 +1,7 @@
 package com.biolab.ecommerce.service;
 
-import com.biolab.ecommerce.DTOs.PedidoRequest;
-import com.biolab.ecommerce.DTOs.PedidoResponse;
-import com.biolab.ecommerce.DTOs.ProdutoResponse;
+import com.biolab.ecommerce.DTOs.*;
+import com.biolab.ecommerce.entities.Categoria;
 import com.biolab.ecommerce.entities.Pedido;
 import com.biolab.ecommerce.entities.StatusPedido;
 import com.biolab.ecommerce.entities.Usuario;
@@ -50,5 +49,7 @@ public class PedidoService {
                         pedido.getPagamento()
                         ))).toList();
     }
+
+
 
 }
