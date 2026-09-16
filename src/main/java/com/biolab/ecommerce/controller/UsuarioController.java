@@ -32,5 +32,10 @@ public class UsuarioController {
     public ResponseEntity<UsuarioResponse> buscarPorId(@PathVariable Long id) {
         return ResponseEntity.ok(service.buscarpoid(id));
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletar(@PathVariable Long id) {
+        String mensagem = service.deletar(id);
+        return ResponseEntity.ok(mensagem);
+    }
 
 }
