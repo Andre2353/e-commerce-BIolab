@@ -3,6 +3,7 @@ package com.biolab.ecommerce.controller;
 import com.biolab.ecommerce.DTOs.ProdutoRequest;
 import com.biolab.ecommerce.DTOs.ProdutoResponse;
 import com.biolab.ecommerce.DTOs.UsuarioRequest;
+import com.biolab.ecommerce.DTOs.UsuarioResponse;
 import com.biolab.ecommerce.repository.UsuarioRepository;
 import com.biolab.ecommerce.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -23,6 +24,13 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<?> criarusuario(@Valid @RequestBody UsuarioRequest dto){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.criarUsuario(dto));
+    }@GetMapping
+    public ResponseEntity<List<UsuarioResponse>> listar() {
+        return ResponseEntity.ok(service.mostrarUsuarios());
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioResponse> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(service.buscarpoid(id));
     }
 
 }

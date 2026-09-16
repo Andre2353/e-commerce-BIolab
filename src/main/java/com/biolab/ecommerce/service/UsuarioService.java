@@ -1,7 +1,9 @@
 package com.biolab.ecommerce.service;
 
+import com.biolab.ecommerce.DTOs.ProdutoResponse;
 import com.biolab.ecommerce.DTOs.UsuarioRequest;
 import com.biolab.ecommerce.DTOs.UsuarioResponse;
+import com.biolab.ecommerce.entities.Produto;
 import com.biolab.ecommerce.entities.Usuario;
 import com.biolab.ecommerce.repository.UsuarioRepository;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +31,7 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
         return request;
     }
+
     public List<UsuarioResponse> mostrarUsuarios() {
         return usuarioRepository.findAll().stream()
                 .map(usuario -> new UsuarioResponse(
@@ -40,6 +43,7 @@ public class UsuarioService {
                         usuario.getRole()))
                 .toList();
     }
+
     public String deletar(long id) {
         Optional<Usuario> usuario = usuarioRepository.findById(id);
         if (usuario.isEmpty()) { // Corrigido de (usuario == null) para (usuario.isEmpty())
@@ -48,7 +52,9 @@ public class UsuarioService {
             usuarioRepository.deleteById(id);
             return "Usuário kickado";
         }
-    }public String atualizarid(Long id, Usuario usuarioatualizado) {
+    }
+
+    public String atualizarid(Long id, Usuario usuarioatualizado) {
         Usuario usuarioexistente = usuarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("usuario não encontrado: " + id));
 
@@ -58,6 +64,21 @@ public class UsuarioService {
 
         usuarioRepository.save(usuarioexistente);
         return "usuario atualizado com sucesso";
+    }
+
+    public UsuarioResponse buscarpoid(Long id) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException
+                        ("Produlto não encontrado com id" + id));
+        return new UsuarioResponse(
+                usuario.getId(),
+                usuario.getNome(),
+                usuario.getEmail(),
+                usuario.getTelefone(),
+                usuario.getSenha(),
+                usuario.getRole()
+
+        );
     }
 
 }
