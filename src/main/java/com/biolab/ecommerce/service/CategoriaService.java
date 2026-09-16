@@ -9,6 +9,8 @@ import com.biolab.ecommerce.entities.Produto;
 import com.biolab.ecommerce.repository.CategoriaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoriaService {
     private final CategoriaRepository categoriaRepository;
@@ -53,6 +55,14 @@ public class CategoriaService {
                 atualizando.getId(),
                 atualizando.getNome()
                 );
+    }
+    public List<CategoriaResponse> Listarcategoria(){
+        return categoriaRepository.findAll().stream()
+                .map((categoria -> new CategoriaResponse(
+                        categoria.getId(),
+                        categoria.getNome()
+
+                ))).toList();
     }
 }
 

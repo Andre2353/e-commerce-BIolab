@@ -16,4 +16,5 @@ public class ProdutoResponse {
     public ProdutoResponse(Long id, String nome, String descricao, double preco, String imgurl) {
     }
 
+
 }
