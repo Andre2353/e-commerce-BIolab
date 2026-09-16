@@ -1,7 +1,10 @@
 package com.biolab.ecommerce.service;
 
 import com.biolab.ecommerce.DTOs.CategoriaRequest;
+import com.biolab.ecommerce.DTOs.CategoriaResponse;
+import com.biolab.ecommerce.DTOs.ProdutoResponse;
 import com.biolab.ecommerce.entities.Categoria;
+import com.biolab.ecommerce.entities.Produto;
 import com.biolab.ecommerce.repository.CategoriaRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +17,23 @@ public class CategoriaService {
     }
 
 
-    public String criarCategoria(CategoriaRequest dto){
+    public String criarCategoria(CategoriaRequest dto) {
         Categoria categoria = new Categoria();
         categoria.setNome((dto.getNome()));
         categoriaRepository.save(categoria);
 
         return "categoria salva com sucesso";
+    }
 
+    public CategoriaResponse buscarpoid(Long id) {
+        Categoria categoria = categoriaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException
+                        ("Produlto não encontrado com id" + id));
+        return new CategoriaResponse(
+                categoria.getId(),
+                categoria.getNome()
+        );
     }
 }
+
+

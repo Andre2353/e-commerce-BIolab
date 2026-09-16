@@ -1,6 +1,8 @@
 package com.biolab.ecommerce.service;
 
 import com.biolab.ecommerce.DTOs.PedidoRequest;
+import com.biolab.ecommerce.DTOs.PedidoResponse;
+import com.biolab.ecommerce.DTOs.ProdutoResponse;
 import com.biolab.ecommerce.entities.Pedido;
 import com.biolab.ecommerce.entities.StatusPedido;
 import com.biolab.ecommerce.entities.Usuario;
@@ -9,11 +11,12 @@ import com.biolab.ecommerce.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.util.List;
 
 @Service
 public class PedidoService {
     private final UsuarioRepository usuarioRepository;
-    private final PedidoRepository pedidoRepository ;
+    private final PedidoRepository pedidoRepository;
 
     public PedidoService(UsuarioRepository usuarioRepository, PedidoRepository pedidoRepository) {
         this.usuarioRepository = usuarioRepository;
@@ -21,8 +24,8 @@ public class PedidoService {
     }
 
 
-    public String criarpedido(PedidoRequest dto){
-        Usuario u =usuarioRepository.findById(dto.getIdcliente()).orElseThrow();
+    public String criarpedido(PedidoRequest dto) {
+        Usuario u = usuarioRepository.findById(dto.getIdcliente()).orElseThrow();
         Pedido p = new Pedido();
         p.setCliente(u);
         p.setMomento(Instant.now());
@@ -30,10 +33,22 @@ public class PedidoService {
         pedidoRepository.save(p);
         return "Pedido criado com sucesso";
     }
-    public String deletarPedido(Long id){
+
+    public String deletarPedido(Long id) {
         Pedido pedido = pedidoRepository.findById(id).orElseThrow();
         pedidoRepository.deleteById(id);
         return "excluido com sucesso";
-
     }
+
+    public List<PedidoResponse> Listarpedido() {
+        return pedidoRepository.findAll().stream()
+                .map((pedido -> new PedidoResponse(
+                        pedido.getId(),
+                        pedido.getMomento(),
+                        pedido.getStatus(),
+                        pedido.getStatus(),
+                        pedido.getPagamento()
+                        ))).toList();
+    }
+
 }

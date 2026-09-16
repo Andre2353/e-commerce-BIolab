@@ -19,10 +19,6 @@ public class UsuarioController {
     }
 
 
-    @PostMapping
-    public ResponseEntity<?> saveuser(@RequestBody UsuarioRequest dto){
-        return ResponseEntity.ok(service.criar(dto));
 
-    }
 
 }
