@@ -10,5 +10,6 @@ public class CategoriaResponse {
     private String nome;
 
     public CategoriaResponse(Long id, String nome) {
+        this.nome = nome;
     }
 }
