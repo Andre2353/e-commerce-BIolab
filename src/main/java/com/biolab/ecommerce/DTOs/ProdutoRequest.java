@@ -14,7 +14,7 @@ public class ProdutoRequest {
     private String nome;
     private String descricao;
     @NotNull
-    private  double preco;
+    private  Double preco;
     private String imgurl;
     private Long idCategoria;
 

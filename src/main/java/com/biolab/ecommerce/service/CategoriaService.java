@@ -2,10 +2,7 @@ package com.biolab.ecommerce.service;
 
 import com.biolab.ecommerce.DTOs.CategoriaRequest;
 import com.biolab.ecommerce.DTOs.CategoriaResponse;
-import com.biolab.ecommerce.DTOs.ProdutoRequest;
-import com.biolab.ecommerce.DTOs.ProdutoResponse;
 import com.biolab.ecommerce.entities.Categoria;
-import com.biolab.ecommerce.entities.Produto;
 import com.biolab.ecommerce.repository.CategoriaRepository;
 import org.springframework.stereotype.Service;
 
@@ -31,30 +28,29 @@ public class CategoriaService {
     public CategoriaResponse buscarpoid(Long id) {
         Categoria categoria = categoriaRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException
-                        ("Produlto não encontrado com id" + id));
+                        ("Categoria não encontrado com id" + id));
         return new CategoriaResponse(
                 categoria.getId(),
                 categoria.getNome()
+
         );
+
     }
 
     public String deletar(Long id) {
         if (!categoriaRepository.existsById(id)) {
-            return "Produlto não existe";
+            return "categoria não existe";
         }
         categoriaRepository.deleteById(id);
-        return "Produlto deletado com sucesso";
+        return "Categoria deletado com sucesso";
     }
 
-    public CategoriaResponse atualizarid(Long id, ProdutoRequest request) {
+    public CategoriaResponse atualizarid(Long id, CategoriaRequest request) {
         Categoria categoriaExistente = categoriaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuario não encontrado  com id :" + id));
+                .orElseThrow(() -> new RuntimeException("Categoria não encontrada com id :" + id));
         categoriaExistente.setNome(request.getNome());
         Categoria atualizando = categoriaRepository.save(categoriaExistente);
-        return new CategoriaResponse(
-                atualizando.getId(),
-                atualizando.getNome()
-                );
+        return new CategoriaResponse(atualizando.getId(), atualizando.getNome());
     }
     public List<CategoriaResponse> Listarcategoria(){
         return categoriaRepository.findAll().stream()
