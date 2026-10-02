@@ -1,9 +1,8 @@
 package com.biolab.ecommerce.service;
 
 import com.biolab.ecommerce.DTOs.*;
-import com.biolab.ecommerce.entities.Categoria;
 import com.biolab.ecommerce.entities.Pedido;
-import com.biolab.ecommerce.entities.StatusPedido;
+import com.biolab.ecommerce.entities.enums.StatusPedido;
 import com.biolab.ecommerce.entities.Usuario;
 import com.biolab.ecommerce.repository.PedidoRepository;
 import com.biolab.ecommerce.repository.UsuarioRepository;

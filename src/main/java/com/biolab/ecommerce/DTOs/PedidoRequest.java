@@ -1,8 +1,6 @@
 package com.biolab.ecommerce.DTOs;
 
-import com.biolab.ecommerce.entities.StatusPedido;
-import com.biolab.ecommerce.entities.Usuario;
-import jakarta.persistence.ManyToOne;
+import com.biolab.ecommerce.entities.enums.StatusPedido;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;

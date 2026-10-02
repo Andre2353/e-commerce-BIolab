@@ -1,7 +1,7 @@
 package com.biolab.ecommerce.DTOs;
 
 import com.biolab.ecommerce.entities.Pagamento;
-import com.biolab.ecommerce.entities.StatusPedido;
+import com.biolab.ecommerce.entities.enums.StatusPedido;
 
 import java.time.Instant;
 

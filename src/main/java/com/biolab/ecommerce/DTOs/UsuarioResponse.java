@@ -1,7 +1,6 @@
 package com.biolab.ecommerce.DTOs;
 
-import com.biolab.ecommerce.entities.Role;
-import jakarta.persistence.Id;
+import com.biolab.ecommerce.entities.enums.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
