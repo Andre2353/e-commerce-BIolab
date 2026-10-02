@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Blob;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -28,4 +29,11 @@ public class Produto {
             joinColumns = @JoinColumn(name = "produtos_id"),
             inverseJoinColumns = @JoinColumn(name = "categoria_id"))
     private Set<Categoria> categorias = new HashSet<>();
+
+    @OneToMany(mappedBy = "id.produto")
+    private Set<ItemPedido> itens = new HashSet<>();
+
+    public List<Pedido> getPedido(){
+        return itens.stream().map(x -> x.getPedido()).toList();
+    }
 }
