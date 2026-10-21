@@ -4,32 +4,36 @@ import com.biolab.ecommerce.entities.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-// substitui os getters e setters
 @Data
-//substitui o construtor com todos os argumentos
 @AllArgsConstructor
-//substitui o construtor vazio
 @NoArgsConstructor
 @Table(name = "usuario")
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank
-    @Column(length = 100)
+    @Column(length = 100, nullable = false)
     private String nome;
-    @Column(length =150) @NotBlank @Email
+
+    @NotBlank
+    @Email
+    @Column(length = 150, nullable = false, unique = true) // unique=true impede emails duplicados
     private String email;
+
     private String telefone;
+
+    @NotBlank
     @Column(nullable = false)
-    @Size(min = 6,max = 20)
-    private String senha;
+    private String senha; // Removido @Size(max = 20) para suportar a Hash BCrypt (60 caracteres)
+
     @Enumerated(EnumType.STRING)
     private Role role;
 

@@ -1,5 +1,6 @@
 package com.biolab.ecommerce.config;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -16,13 +17,15 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/useAAAAAAAr").permitAll()
-                        .requestMatchers("/admin").hasRole("/ADMIN")
+                        .requestMatchers("/user").permitAll()
+                        .requestMatchers("/admin").hasRole("ADMIN")
+                        .requestMatchers("/api/Cliente", "/api/cliente").permitAll() // Liberado para maiúsculo e minúsculo
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
                 .build();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
