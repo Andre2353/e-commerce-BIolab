@@ -2,8 +2,8 @@ package com.biolab.ecommerce.controller;
 
 import com.biolab.ecommerce.DTOs.UsuarioRequest;
 import com.biolab.ecommerce.DTOs.UsuarioResponse;
-import com.biolab.ecommerce.entities.Usuario;
 import com.biolab.ecommerce.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,32 +21,33 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<UsuarioRequest> criarUsuario(@RequestBody UsuarioRequest request) {
-        UsuarioRequest novoUsuario = usuarioService.criarUsuario(request);
+    public ResponseEntity<UsuarioResponse> criarUsuario(@Valid @RequestBody UsuarioRequest request) {
+        UsuarioResponse novoUsuario = usuarioService.criarUsuario(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoUsuario);
     }
 
     @GetMapping
-    public ResponseEntity<List<UsuarioResponse>> mostrarUsuarios() {
-        List<UsuarioResponse> usuarios = usuarioService.mostrarUsuarios();
-        return ResponseEntity.ok(usuarios);
+    public ResponseEntity<List<UsuarioResponse>> listarUsuarios() {
+        return ResponseEntity.ok(usuarioService.mostrarUsuarios());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioResponse> buscarPorId(@PathVariable Long id) {
-        UsuarioResponse usuario = usuarioService.buscarpoid(id);
+        UsuarioResponse usuario = usuarioService.buscarPorId(id);
         return ResponseEntity.ok(usuario);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> atualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
-        String resposta = usuarioService.atualizarid(id, usuario);
-        return ResponseEntity.ok(resposta);
+    public ResponseEntity<UsuarioResponse> atualizarUsuario(
+            @PathVariable Long id,
+            @Valid @RequestBody UsuarioRequest request) {
+        UsuarioResponse atualizado = usuarioService.atualizarPorId(id, request);
+        return ResponseEntity.ok(atualizado);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletarUsuario(@PathVariable Long id) {
-        String resposta = usuarioService.deletar(id);
-        return ResponseEntity.ok(resposta);
+    public ResponseEntity<Void> deletarUsuario(@PathVariable Long id) {
+        usuarioService.deletar(id);
+        return ResponseEntity.noContent().build();
     }
 }

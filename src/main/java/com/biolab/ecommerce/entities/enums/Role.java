@@ -1,6 +1,6 @@
 package com.biolab.ecommerce.entities.enums;
 
 public enum Role {
-    ADMIM,
+    ADMIN,
     USER
 }
