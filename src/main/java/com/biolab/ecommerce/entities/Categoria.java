@@ -17,7 +17,7 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    @ManyToMany(mappedBy = "categorias")
+    @ManyToMany(mappedBy = "categoriass")
     // a diferença do list para o set é que o set não permite duplicada
     private Set<Produto> produtos = new HashSet<>();
 }
