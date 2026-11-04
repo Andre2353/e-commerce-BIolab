@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class AuthDto {
+public class AuthDTO {
     @NotBlank
     private String cpf;
     @NotBlank

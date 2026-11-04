@@ -47,7 +47,7 @@ public class ProdutoService {
      public ProdutoResponse buscarpoid(Long id) {
          Produto produto = produtoRepository.findById(id)
                  .orElseThrow(() -> new RuntimeException
-                         ("Produlto não encontrado com id" + id));
+                         ("Produto não encontrado com id" + id));
          return new ProdutoResponse(
                  produto.getId(),
                  produto.getNome(),
@@ -58,10 +58,10 @@ public class ProdutoService {
      }
     public String deletar(Long id) {
         if (!produtoRepository.existsById(id)) {
-            return "Produlto não existe";
+            return "Produto não existe";
         }
         produtoRepository.deleteById(id);
-        return "Produlto deletado com sucesso";
+        return "Produto deletado com sucesso";
     }
     public ProdutoResponse atualizarid(Long id, ProdutoRequest request){
         Produto produltoExistente = produtoRepository.findById(id)

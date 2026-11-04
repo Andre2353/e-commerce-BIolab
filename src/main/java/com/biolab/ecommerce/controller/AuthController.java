@@ -1,7 +1,7 @@
 package com.biolab.ecommerce.controller;
 
+import com.biolab.ecommerce.DTOs.AuthDTO;
 import com.biolab.ecommerce.service.CustomUserDetailsService;
-// import com.biolab.ecommerce.dto.AuthDTO; // Certifique-se de importar a classe AuthDTO
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
