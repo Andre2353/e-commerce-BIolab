@@ -4,6 +4,7 @@ import com.biolab.ecommerce.entities.enums.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,23 +26,15 @@ public class Usuario {
 
     @NotBlank
     @Email
-    @Column(length = 150, nullable = false, unique = true) // unique=true impede emails duplicados
+    @Column(length = 150, nullable = false, unique = true)
     private String email;
 
     private String telefone;
 
     @NotBlank
     @Column(nullable = false)
-    private String senha; // Removido @Size(max = 20) para suportar a Hash BCrypt (60 caracteres)
+    private String senha;
 
     @Enumerated(EnumType.STRING)
     private Role role;
-
-    public Usuario(String nome, String email, String telefone, String senha) {
-        this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
-        this.senha = senha;
-        this.role = Role.USER;
-    }
 }

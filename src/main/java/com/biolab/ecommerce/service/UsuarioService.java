@@ -90,6 +90,7 @@ public class UsuarioService {
                 usuario.getEmail(),
                 usuario.getTelefone(),
                 usuario.getRole()
+
         );
     }
 }

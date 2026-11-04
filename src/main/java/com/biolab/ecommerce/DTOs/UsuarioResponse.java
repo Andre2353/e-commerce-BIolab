@@ -27,7 +27,5 @@ public class UsuarioResponse {
         this.telefone = telefone;
         this.role = role;
     }
-
-    // getters e setters (ou use Lombok @Data + @AllArgsConstructor)
 }
 

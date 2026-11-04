@@ -1,5 +1,6 @@
 package com.biolab.ecommerce.DTOs;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +9,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class AuthDTO {
     @NotBlank
-    private String cpf;
+    @Email
+    private String email;
     @NotBlank
     private String senha;
 }

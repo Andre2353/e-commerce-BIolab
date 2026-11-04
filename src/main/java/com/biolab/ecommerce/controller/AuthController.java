@@ -27,7 +27,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody AuthDTO data){
         try {
-            var u = customUserDetailsService.loadUserByUsername(data.getCpf());
+            var u = customUserDetailsService.loadUserByUsername(data.getEmail());
             if (!passwordEncoder.matches(data.getSenha(), u.getPassword())){
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário ou senha incorreta");
             }
